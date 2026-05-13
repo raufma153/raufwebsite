@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        body
+        {
+            background-color: black;
+        }
+        .container
+        {
+            background-color: aqua;
+            margin: 200px auto;
+            text-align: center;
+            border-radius: 30px;
+            border: 5px solid aquamarine;
+            width: 500px;
+        }
+        h1
+        {
+            font-size: 50px;
+            color: aliceblue;
+            text-align: center;
+            margin: 200px;
+        }
+
+        input
+        {
+            background-color: whitesmoke;
+
+        }
+
+        button
+        {
+            background-color: black;
+            color: whitesmoke;
+            width: 100px;
+            height: 50px;
+            border-radius: 40px;
+            margin: 30px auto;
+            transition: 1s;
+            border: 3px solid red;
+        }
+
+        button:hover
+        {
+            background-color: red;
+            transition: 1s;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Rauf Website</h1>
+    <div class="container">
+        <div class="signup-box">
+            <h2>Hesap Oluştur</h2>
+            <p>Ücretsiz katılın ve avantajlardan yararlanın.</p>
+            
+            <form>
+                <div class="input-group">
+                    <label for="name">Ad Soyad</label>
+                    <input type="text" id="name" placeholder="Adınızı giriniz" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">E-posta</label>
+                    <input type="email" id="email" placeholder="ornek@mail.com" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn">Kayıt Ol</button>
+            </form>
+            
+            <p class="footer-text">Zaten hesabınız var mı? <a href="#">Giriş Yap</a></p>
+        </div>
+    </div>
+</body>
+</html>

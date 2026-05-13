@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Basit Kare Yakalama Oyunu</title>
+    <style>
+        /* CSS: Oyunun görünüşü */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: darkgrey;
+            margin: 0;
+            overflow: hidden; /* Karenin dışarı taşmasını engeller */
+        }
+
+        #game-container {
+            width: 100vw;
+            height: 80vh;
+            position: relative;
+            border-bottom: 2px solid #333;
+            cursor: crosshair;
+        }
+
+        #target {
+            width: 50px;
+            height: 50px;
+            background-color: #e74c3c;
+            position: absolute;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.1s; /* Hafif bir hareket efekti */
+        }
+
+        .stats {
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stats">
+        Puan: <span id="score">0</span> | Süre: <span id="time">30</span>s
+    </div>
+    <button onclick="startGame()" id="start-btn">Oyunu Başlat</button>
+
+    <div id="game-container">
+        <div id="target" style="display: none;"></div>
+    </div>
+
+    <script>
+        // JavaScript: Oyunun mantığı
+        let score = 0;
+        let timeLeft = 30;
+        let timer;
+        const target = document.getElementById('target');
+        const scoreDisplay = document.getElementById('score');
+        const timeDisplay = document.getElementById('time');
+        const startBtn = document.getElementById('start-btn');
+
+        function moveTarget() {
+            // Ekranın genişliğini ve yüksekliğini alıyoruz
+            const container = document.getElementById('game-container');
+            const maxX = container.clientWidth - 50;
+            const maxY = container.clientHeight - 50;
+
+            // Rastgele koordinatlar oluşturuyoruz
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            // Kareyi yeni yerine taşıyoruz
+            target.style.left = randomX + 'px';
+            target.style.top = randomY + 'px';
+        }
+
+        function startGame() {
+            // Değerleri sıfırla
+            score = 0;
+            timeLeft = 30;
+            scoreDisplay.innerText = score;
+            timeDisplay.innerText = timeLeft;
+            startBtn.style.display = 'none';
+            target.style.display = 'block';
+            
+            moveTarget();
+
+            // Geri sayımı başlat
+            timer = setInterval(() => {
+                timeLeft--;
+                timeDisplay.innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        target.addEventListener('click', () => {
+            score++;
+            scoreDisplay.innerText = score;
+            moveTarget();
+        });
+
+        function endGame() {
+            clearInterval(timer);
+            target.style.display = 'none';
+            startBtn.style.display = 'block';
+            alert("Oyun bitti! Toplam Puanın: " + score);
+        }
+    </script>
+</body>
+</html>
